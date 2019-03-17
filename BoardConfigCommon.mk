@@ -51,10 +51,12 @@ BOARD_RAMDISK_OFFSET := 0x01000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000
 BOARD_KERNEL_IMAGE_NAME := Image.gz
+BOARD_KERNEL_LZ4C_DT := true
 BOARD_KERNEL_SEPARATED_DT := true
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/aarch64/aarch64-linux-android-4.9/bin
-TARGET_CUSTOM_DTBTOOL := dtbtool_moto
-KERNEL_TOOLCHAIN_PREFIX := aarch64-linux-androidkernel-
+TARGET_CUSTOM_DTBTOOL := dtbTool_custom
+BOARD_DTBTOOL_ARGS := --force-v3 --motorola 1
+KERNEL_TOOLCHAIN_PREFIX := aarch64-linux-android-
 TARGET_KERNEL_SOURCE := kernel/motorola/msm8937
 
 LZMA_RAMDISK_TARGETS := recovery
