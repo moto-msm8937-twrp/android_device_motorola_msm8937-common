@@ -14,10 +14,14 @@
 # limitations under the License.
 #
 
-ifneq ($(filter addison albus cedric montana owens perry potter sanders, $(TARGET_DEVICE)),)
-
 LOCAL_PATH := $(call my-dir)
 
-include $(call all-makefiles-under,$(LOCAL_PATH))
+ifeq ($(BOARD_VENDOR),motorola)
+ifeq ($(TARGET_BOARD_PLATFORM),msm8937)
 
+include $(call all-subdir-makefiles,$(LOCAL_PATH))
+
+include $(CLEAR_VARS)
+
+endif
 endif

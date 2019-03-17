@@ -22,8 +22,6 @@ TARGET_RECOVERY_DEVICE_DIRS := \
 
 # Architecture
 TARGET_ARCH := arm64
-TARGET_KERNEL_ARCH := arm64
-TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
@@ -38,19 +36,28 @@ TARGET_2ND_CPU_VARIANT := cortex-a53
 TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 
+# Platform
 TARGET_BOARD_PLATFORM := msm8937
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno505
+TARGET_BOARD_SUFFIX := _64
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := MSM8937
 TARGET_NO_BOOTLOADER := true
 
 # Kernel
-BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom ehci-hcd.park=3 vmalloc=400M androidboot.bootdevice=7824900.sdhci movablecore=160M androidboot.selinux=permissive
+TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_HEADER_ARCH := arm64
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom
+BOARD_KERNEL_CMDLINE += user_debug=30 msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci
+BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1 earlycon=msm_hsl_uart,0x78B0000 vmalloc=400M
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_RAMDISK_OFFSET := 0x01000000
 BOARD_KERNEL_PAGESIZE := 2048
-BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 BOARD_KERNEL_IMAGE_NAME := Image.gz
+BOARD_KERNEL_LZ4C_DT := true
 BOARD_KERNEL_SEPARATED_DT := true
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/aarch64/aarch64-linux-android-4.9/bin
 TARGET_CUSTOM_DTBTOOL := dtbTool_custom
@@ -60,39 +67,45 @@ TARGET_KERNEL_SOURCE := kernel/motorola/msm8937
 
 LZMA_RAMDISK_TARGETS := recovery
 
+# Qualcomm support
 BOARD_USES_QCOM_HARDWARE := true
+TARGET_RECOVERY_QCOM_RTC_FIX := true
 
 # File systems
 BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
-
 TARGET_RECOVERY_FSTAB := $(VENDOR_PATH)/recovery/root/etc/twrp.fstab
 RECOVERY_SDCARD_ON_DATA := true
 TW_INCLUDE_FUSE_EXFAT := true # exFAT FS Support
 TW_INCLUDE_FUSE_NTFS := true # NTFS Support
-TARGET_RECOVERY_FSTAB := device/motorola/msm8937-common/twrp.fstab
 
-RECOVERY_SDCARD_ON_DATA := true
+# Keymaster
+TARGET_PROVIDES_KEYMASTER := true
 
 # Encryption support
 TARGET_HW_DISK_ENCRYPTION := true
 TW_INCLUDE_CRYPTO := true
+TARGET_CRYPTFS_HW_PATH := vendor/qcom/cryptfs_hw
 
 # Partitions
-# These sizes don't really matter for building TWRP
-#BOARD_FLASH_BLOCK_SIZE := 131072
-#BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216        #    16384 * 1024 mmcblk0p37
-#BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16879616    #    16484 * 1024 mmcblk0p38
-#BOARD_SYSTEMIMAGE_PARTITION_SIZE := 4294967296    #  4194304 * 1024 mmcblk0p53
-#BOARD_USERDATAIMAGE_PARTITION_SIZE := 25614597120 # 25014255 * 1024 mmcblk0p54
+BOARD_FLASH_BLOCK_SIZE := 131072
+BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216        # mmcblk0p37
+BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456      # mmcblk0p52
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16879616    # mmcblk0p38
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3623878656    # mmcblk0p53
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 10768858624 # mmcblk0p54
 
 # TWRP
 BOARD_SUPPRESS_SECURE_ERASE := true # don't take forever to wipe
-TARGET_RECOVERY_QCOM_RTC_FIX := true
 #TARGET_RECOVERY_PIXEL_FORMAT := RGB_565
 #TW_NEW_ION_HEAP := true
 #RECOVERY_GRAPHICS_USE_LINELENGTH := true
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_THEME := portrait_hdpi
-TW_INPUT_BLACKLIST := "hbtp_vm"
+TW_INPUT_BLACKLIST := "hbtp_vm" # Disable Mouse Cursor
+TW_EXTRA_LANGUAGES := true
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+RECOVERY_SDCARD_ON_DATA := true
+BOARD_HAS_NO_SELECT_BUTTON := true
