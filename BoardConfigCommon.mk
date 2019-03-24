@@ -108,8 +108,15 @@ TW_MAX_BRIGHTNESS                   := 255
 TW_DEFAULT_BRIGHTNESS               := 160
 
 # Debug
-#TWRP_INCLUDE_LOGCAT := true
-#TWRP_EVENT_LOGGING  := true
+ifeq ($(TARGET_BUILD_VARIANT),eng)
+    TWRP_INCLUDE_LOGCAT                 := true
+    TARGET_USES_LOGD                    := true
+    TWRP_EVENT_LOGGING                  := true
+    TW_CRYPTO_SYSTEM_VOLD_DEBUG         := true
+    # Todo: add strace and debuggerd binary or compile
+    # TARGET_RECOVERY_DEVICE_MODULES      += strace debuggerd
+    # TW_RECOVERY_ADDITIONAL_RELINK_FILES += $(TARGET_OUT_OPTIONAL_EXECUTABLES)/strace $(TARGET_OUT_OPTIONAL_EXECUTABLES)/debuggerd64
+endif
 
 # TWRP
 BOARD_SUPPRESS_SECURE_ERASE         := true # don't take forever to wipe
