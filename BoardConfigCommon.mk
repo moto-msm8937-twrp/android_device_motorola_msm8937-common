@@ -105,7 +105,7 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE  := 10768858624 # mmcblk0p54
 # Brightness
 TW_BRIGHTNESS_PATH                  := /sys/class/leds/lcd-backlight/brightness
 TW_MAX_BRIGHTNESS                   := 255
-TW_DEFAULT_BRIGHTNESS               := 8
+TW_DEFAULT_BRIGHTNESS               := 160
 
 # Debug
 #TWRP_INCLUDE_LOGCAT := true
