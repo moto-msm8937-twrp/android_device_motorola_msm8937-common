@@ -121,17 +121,20 @@ ifeq ($(TARGET_BUILD_VARIANT),eng)
     # TW_RECOVERY_ADDITIONAL_RELINK_FILES += $(TARGET_OUT_OPTIONAL_EXECUTABLES)/strace $(TARGET_OUT_OPTIONAL_EXECUTABLES)/debuggerd64
 endif
 
-# TWRP
-BOARD_SUPPRESS_SECURE_ERASE         := true # don't take forever to wipe
+# Screen
+TARGET_RECOVERY_PIXEL_FORMAT        := "RGBX_8888"
 TW_SCREEN_BLANK_ON_BOOT             := true
+
+# Interface
 TW_THEME                            := portrait_hdpi
-TW_INPUT_BLACKLIST                  := "hbtp_vm" # Disable Mouse Cursor
-TW_EXTRA_LANGUAGES                  := true
+TW_INPUT_BLACKLIST                  := "hbtp_vm" # Disable mouse cursor
 RECOVERY_GRAPHICS_USE_LINELENGTH    := true
-RECOVERY_SDCARD_ON_DATA             := true
+TW_NEW_ION_HEAP                     := true
+
+# Language
+TW_EXTRA_LANGUAGES                  := true
+
+# Misc TWRP
+BOARD_SUPPRESS_SECURE_ERASE         := true # don't take forever to wipe
 BOARD_HAS_NO_SELECT_BUTTON          := true
-RECOVERY_SDCARD_ON_DATA             := true
-TW_INCLUDE_FUSE_EXFAT               := true # exFAT FS Support
-TW_INCLUDE_FUSE_NTFS                := true # NTFS Support
-#TARGET_RECOVERY_PIXEL_FORMAT := RGB_565
-#TW_NEW_ION_HEAP := true
+TW_INCLUDE_FB2PNG                   := true
