@@ -107,6 +107,10 @@ TW_BRIGHTNESS_PATH                  := /sys/class/leds/lcd-backlight/brightness
 TW_MAX_BRIGHTNESS                   := 255
 TW_DEFAULT_BRIGHTNESS               := 8
 
+# Debug
+#TWRP_INCLUDE_LOGCAT := true
+#TWRP_EVENT_LOGGING  := true
+
 # TWRP
 BOARD_SUPPRESS_SECURE_ERASE         := true # don't take forever to wipe
 TW_SCREEN_BLANK_ON_BOOT             := true
