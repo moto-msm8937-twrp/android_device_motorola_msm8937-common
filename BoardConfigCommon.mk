@@ -85,6 +85,9 @@ TARGET_USERIMAGES_USE_EXT4  := true
 TARGET_USERIMAGES_USE_F2FS  := true
 TARGET_RECOVERY_FSTAB       := $(VENDOR_PATH)/recovery/root/etc/twrp.fstab
 
+# Lun
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun/file
+
 # Keymaster
 TARGET_PROVIDES_KEYMASTER := true
 
