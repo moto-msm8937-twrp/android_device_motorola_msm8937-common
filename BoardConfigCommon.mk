@@ -118,7 +118,7 @@ ifeq ($(TARGET_BUILD_VARIANT),eng)
     TARGET_USES_LOGD                    := true
     TWRP_EVENT_LOGGING                  := true
     TW_CRYPTO_SYSTEM_VOLD_DEBUG         := true
-    # Todo: add strace and debuggerd binary or compile
+    # TODO: add strace and debuggerd binary or compile
     # TARGET_RECOVERY_DEVICE_MODULES      += strace debuggerd
     # TW_RECOVERY_ADDITIONAL_RELINK_FILES += $(TARGET_OUT_OPTIONAL_EXECUTABLES)/strace $(TARGET_OUT_OPTIONAL_EXECUTABLES)/debuggerd64
 endif
