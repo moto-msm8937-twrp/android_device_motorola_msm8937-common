@@ -84,6 +84,8 @@ BOARD_HAS_LARGE_FILESYSTEM  := true
 TARGET_USERIMAGES_USE_EXT4  := true
 TARGET_USERIMAGES_USE_F2FS  := true
 TARGET_RECOVERY_FSTAB       := $(VENDOR_PATH)/recovery/root/etc/twrp.fstab
+TW_INCLUDE_FUSE_EXFAT       := true # exFAT support
+TW_INCLUDE_FUSE_NTFS        := true # NTFS support
 
 # Lun
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun/file
