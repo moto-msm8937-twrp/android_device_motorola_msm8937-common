@@ -83,7 +83,7 @@ TARGET_RECOVERY_QCOM_RTC_FIX    := true
 BOARD_HAS_LARGE_FILESYSTEM  := true
 TARGET_USERIMAGES_USE_EXT4  := true
 TARGET_USERIMAGES_USE_F2FS  := true
-TARGET_RECOVERY_FSTAB       := $(DEVICE_COMMON_PATH)/recovery/root/etc/twrp.fstab
+TARGET_RECOVERY_FSTAB       := $(DEVICE_PATH)/recovery/root/etc/twrp.fstab
 TW_INCLUDE_FUSE_EXFAT       := true # exFAT support
 TW_INCLUDE_FUSE_NTFS        := true # NTFS support
 
@@ -99,16 +99,7 @@ TARGET_PROVIDES_KEYMASTER := true
 # Encryption support
 TARGET_HW_DISK_ENCRYPTION   := true
 TW_INCLUDE_CRYPTO           := true
-TARGET_CRYPTFS_HW_PATH      := vendor/qcom/cryptfs_hw
-
-# Partitions
-BOARD_FLASH_BLOCK_SIZE              := 131072
-BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE   := ext4
-BOARD_BOOTIMAGE_PARTITION_SIZE      := 16777216    # mmcblk0p37
-BOARD_CACHEIMAGE_PARTITION_SIZE     := 268435456   # mmcblk0p52
-BOARD_RECOVERYIMAGE_PARTITION_SIZE  := 16879616    # mmcblk0p38
-BOARD_SYSTEMIMAGE_PARTITION_SIZE    := 3623878656  # mmcblk0p53
-BOARD_USERDATAIMAGE_PARTITION_SIZE  := 10768858624 # mmcblk0p54
+TARGET_CRYPTFS_HW_PATH      := vendor/qcom/opensource/cryptfs_hw
 
 # Brightness
 TW_BRIGHTNESS_PATH                  := /sys/class/leds/lcd-backlight/brightness
