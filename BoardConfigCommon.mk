@@ -14,10 +14,10 @@
 # limitations under the License.
 #
 
-VENDOR_PATH := device/motorola/msm8937-common
+DEVICE_COMMON_PATH := device/motorola/msm8937-common
 
 TARGET_RECOVERY_DEVICE_DIRS := \
-    $(VENDOR_PATH) \
+    $(DEVICE_COMMON_PATH) \
     $(DEVICE_PATH)
 
 # Architecture
@@ -83,7 +83,7 @@ TARGET_RECOVERY_QCOM_RTC_FIX    := true
 BOARD_HAS_LARGE_FILESYSTEM  := true
 TARGET_USERIMAGES_USE_EXT4  := true
 TARGET_USERIMAGES_USE_F2FS  := true
-TARGET_RECOVERY_FSTAB       := $(VENDOR_PATH)/recovery/root/etc/twrp.fstab
+TARGET_RECOVERY_FSTAB       := $(DEVICE_COMMON_PATH)/recovery/root/etc/twrp.fstab
 TW_INCLUDE_FUSE_EXFAT       := true # exFAT support
 TW_INCLUDE_FUSE_NTFS        := true # NTFS support
 
