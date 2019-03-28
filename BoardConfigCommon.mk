@@ -107,7 +107,7 @@ TW_MAX_BRIGHTNESS                   := 255
 TW_DEFAULT_BRIGHTNESS               := 160
 
 # Debug
-ifeq ($(TARGET_BUILD_VARIANT),eng)
+ifeq ($(TARGET_BUILD_VARIANT),userdebug)
     TWRP_INCLUDE_LOGCAT                 := true
     TARGET_USES_LOGD                    := true
     TWRP_EVENT_LOGGING                  := true
