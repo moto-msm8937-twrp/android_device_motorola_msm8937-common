@@ -90,6 +90,9 @@ TW_INCLUDE_FUSE_NTFS        := true # NTFS support
 # Lun
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun/file
 
+# Security Patch
+PLATFORM_SECURITY_PATCH := 2019-05-05
+
 # SDCard
 RECOVERY_SDCARD_ON_DATA = true
 
